@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapVC
 //  PixelCity
 //
 //  Created by Minni K Ang on 2017-08-29.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MapVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
