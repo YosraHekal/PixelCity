@@ -38,7 +38,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         addDoubleTap()
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
-        collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: "photoCell")
+        collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: PHOTO_CELL)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
@@ -106,6 +106,10 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
      }
     
+    func getPhotos(forAnnotation annotation: DroppablePin) -> String {
+        return "\(FLICKR_URL)&content_type=1&lat=\(annotation.coordinate.latitude)&lon=\(annotation.coordinate.longitude)&radius=\(regionRadius/1000)&per_page=20&format=json&nojsoncallback=1"
+    }
+    
     @IBAction func centerMapBtnPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
@@ -121,7 +125,7 @@ extension MapVC: MKMapViewDelegate {
             return nil
         }
         
-        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "droppedPin")
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: DROPPED_PIN)
         pinAnnotation.pinTintColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         pinAnnotation.animatesDrop = true
         return pinAnnotation
@@ -137,17 +141,19 @@ extension MapVC: MKMapViewDelegate {
         removePin()
         removeSpinner()
         removeProgressLbl()
+        
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppedPin")
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, regionRadius * 2.0, regionRadius * 2.0)
+        let annotation = DroppablePin(coordinate: touchCoordinate, identifier: DROPPED_PIN)
 
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.addAnnotation(annotation)
         self.showBottomView(show: true)
         addSwipeDown()
         addSpinner()
         addProgressLbl()
+        print(getPhotos(forAnnotation: annotation))
     }
     
     func removePin() {
@@ -183,7 +189,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PHOTO_CELL, for: indexPath) as? PhotoCell {
             return cell
         } else {
             return UICollectionViewCell()
