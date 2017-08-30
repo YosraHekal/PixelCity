@@ -25,6 +25,7 @@
 		453CD1A01F560F3900E426D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453CD1A31F560F3900E426D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		453CD1A51F560F3900E426D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		453CD1B01F562C2400E426D0 /* Ottawa.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Ottawa.gpx; path = PixelCity/Utilities/Ottawa.gpx; sourceTree = SOURCE_ROOT; };
 		D28CFF6E5445516B7D74A702 /* Pods-PixelCity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelCity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PixelCity/Pods-PixelCity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +117,7 @@
 		453CD1AF1F560F8600E426D0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				453CD1B01F562C2400E426D0 /* Ottawa.gpx */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -433,6 +435,7 @@
 				453CD1AA1F560F3900E426D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
