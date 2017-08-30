@@ -12,7 +12,7 @@ import AlamofireImage
 import MapKit
 import CoreLocation
 
-class MapVC: UIViewController {
+class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -25,6 +25,20 @@ class MapVC: UIViewController {
         mapView.delegate = self
         locationManager.delegate = self
         configureLocationServices()
+        addDoubleTap()
+    }
+    
+    func addDoubleTap() {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.delegate = self
+        mapView.addGestureRecognizer(doubleTap)
+    }
+    
+    func removePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
     }
 
     @IBAction func centerMapBtnPressed(_ sender: Any) {
@@ -35,10 +49,33 @@ class MapVC: UIViewController {
 }
 
 extension MapVC: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let pinAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "droppedPin")
+        pinAnnotation.pinTintColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        pinAnnotation.animatesDrop = true
+        return pinAnnotation
+    }
+    
     func centerMapOnUserLocation() {
         guard let coordinate = locationManager.location?.coordinate else { return }
-        print(coordinate)
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    @objc func dropPin(sender: UITapGestureRecognizer) {
+        removePin()
+        let touchPoint = sender.location(in: mapView)
+        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppedPin")
+        mapView.addAnnotation(annotation)
+        
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
 }
