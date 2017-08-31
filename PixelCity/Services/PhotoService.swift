@@ -15,6 +15,7 @@ class PhotoService {
     
     var photoInfoArray = [PhotoInfo]()
     var photoInfo: PhotoInfo?
+    var imageArray = [UIImage]()
     
     func getphotoInfoArray(forUrl url: String, completion: @escaping (_ status: Bool) -> ()) {
     

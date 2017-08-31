@@ -30,6 +30,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
     
+    var photoService = PhotoService.instance
+    var imageArray = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -141,6 +144,7 @@ extension MapVC: MKMapViewDelegate {
         removePin()
         removeSpinner()
         removeProgressLbl()
+        imageArray = []
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
@@ -149,13 +153,30 @@ extension MapVC: MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.addAnnotation(annotation)
-        let alamofireUrl = getFlickrInfo(forAnnotation: annotation)
+        
         self.showBottomView(show: true)
         addSwipeDown()
         addSpinner()
         addProgressLbl()
-        PhotoService.instance.getphotoInfoArray(forUrl: alamofireUrl) { (true) in
+        
+        let alamofireUrl = getFlickrInfo(forAnnotation: annotation)
+
+        photoService.getphotoInfoArray(forUrl: alamofireUrl) { (true) in
             
+            var urlArray = [String]()
+            
+            for photoInfo in self.photoService.photoInfoArray {
+                let imageUrl = "https://farm\(photoInfo.farm!).staticflickr.com/\(photoInfo.server!)/\(photoInfo.id!)_\(photoInfo.secret!)_h_d.jpg"
+                urlArray.append(imageUrl)
+            }
+            
+            for url in urlArray {
+                Alamofire.request(url).responseImage(completionHandler: { (response) in
+                    guard let image = response.result.value else { return }
+                    self.imageArray.append(image)
+                    self.progressLbl?.text = "\(self.imageArray.count)/20 images downloaded"
+                })
+            }
         }
     }
     
