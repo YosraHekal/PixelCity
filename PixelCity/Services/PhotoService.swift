@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class PhotoService {
     static let instance = PhotoService()
@@ -19,13 +20,13 @@ class PhotoService {
     
         Alamofire.request(url).responseJSON { (response) in
             if response.result.error == nil {
-                guard let data = response.data else { return }
-                do {
-                    
-                    
-                    self.photoInfoArray = try JSONDecoder().decode([PhotoInfo].self, from: data)
-                } catch let error {
-                    debugPrint(error as Any)
+                guard let json = response.result.value as? Dictionary<String, Any> else { return }
+                guard let photos = json["photos"] as? Dictionary<String, Any> else { return }
+                guard let photo = photos["photo"] as? [Dictionary<String, Any>] else { return }
+                
+                for pic in photo {
+                    let photoInfo = PhotoInfo(id: pic["id"] ?? "NA", owner: pic["owner"] ?? "NA", secret: pic["secret"] ?? "NA", server: pic["server"] ?? "NA", farm: pic["farm"] ?? "NA", title: pic["title"] ?? "NA", ispublic: pic["ispublic"] ?? "NA", isfriend: pic["isfriend"] ?? "NA", isfamily: pic["isfamily"] ?? "NA")
+                    self.photoInfoArray.append(photoInfo)
                 }
                 completion(true)
             } else {
