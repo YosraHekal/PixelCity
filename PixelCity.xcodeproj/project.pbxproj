@@ -15,6 +15,8 @@
 		453CD1B21F56516900E426D0 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453CD1B11F56516900E426D0 /* DroppablePin.swift */; };
 		453CD1B41F5741AA00E426D0 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453CD1B31F5741AA00E426D0 /* PhotoCell.swift */; };
 		453CD1B61F574ECB00E426D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453CD1B51F574ECB00E426D0 /* Constants.swift */; };
+		453CD1B91F576C2300E426D0 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453CD1B81F576C2300E426D0 /* PhotoInfo.swift */; };
+		453CD1BB1F57701800E426D0 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453CD1BA1F57701800E426D0 /* PhotoService.swift */; };
 		9FBED3D359D41275D367B798 /* Pods_PixelCity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F80D98D86576E258598F3F /* Pods_PixelCity.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 		453CD1B11F56516900E426D0 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
 		453CD1B31F5741AA00E426D0 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		453CD1B51F574ECB00E426D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		453CD1B81F576C2300E426D0 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
+		453CD1BA1F57701800E426D0 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		D28CFF6E5445516B7D74A702 /* Pods-PixelCity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelCity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PixelCity/Pods-PixelCity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 		453CD1981F560F3900E426D0 /* PixelCity */ = {
 			isa = PBXGroup;
 			children = (
+				453CD1BC1F57717100E426D0 /* Services */,
+				453CD1B71F576C0300E426D0 /* Model */,
 				453CD1AF1F560F8600E426D0 /* Utilities */,
 				453CD1AE1F560F7B00E426D0 /* Extensions */,
 				453CD1AC1F560F6600E426D0 /* View */,
@@ -129,6 +135,22 @@
 				453CD1B51F574ECB00E426D0 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		453CD1B71F576C0300E426D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				453CD1B81F576C2300E426D0 /* PhotoInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		453CD1BC1F57717100E426D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				453CD1BA1F57701800E426D0 /* PhotoService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,11 +265,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PixelCity/Pods-PixelCity-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -261,11 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				453CD1B91F576C2300E426D0 /* PhotoInfo.swift in Sources */,
 				453CD1B61F574ECB00E426D0 /* Constants.swift in Sources */,
 				453CD1B41F5741AA00E426D0 /* PhotoCell.swift in Sources */,
 				453CD19C1F560F3900E426D0 /* MapVC.swift in Sources */,
 				453CD1B21F56516900E426D0 /* DroppablePin.swift in Sources */,
 				453CD19A1F560F3900E426D0 /* AppDelegate.swift in Sources */,
+				453CD1BB1F57701800E426D0 /* PhotoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3A3A843DB5863BA2A49F8C632E3C39FD'
-               BlueprintName = 'Pods-PixelCity'
+               BlueprintIdentifier = 'E3F226E0D3952995919CD2C6EDC8D26E'
+               BlueprintName = 'SwiftyJSON'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-PixelCity.framework'>
+               BuildableName = 'SwiftyJSON.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

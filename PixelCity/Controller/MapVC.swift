@@ -29,7 +29,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -106,7 +106,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
      }
     
-    func getPhotos(forAnnotation annotation: DroppablePin) -> String {
+    func getFlickrInfo(forAnnotation annotation: DroppablePin) -> String {
         return "\(FLICKR_URL)&content_type=1&lat=\(annotation.coordinate.latitude)&lon=\(annotation.coordinate.longitude)&radius=\(regionRadius/1000)&per_page=20&format=json&nojsoncallback=1"
     }
     
@@ -149,11 +149,14 @@ extension MapVC: MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.addAnnotation(annotation)
+        let alamofireUrl = getFlickrInfo(forAnnotation: annotation)
         self.showBottomView(show: true)
         addSwipeDown()
         addSpinner()
         addProgressLbl()
-        print(getPhotos(forAnnotation: annotation))
+        PhotoService.instance.getphotoInfoArray(forUrl: alamofireUrl) { (true) in
+            
+        }
     }
     
     func removePin() {
