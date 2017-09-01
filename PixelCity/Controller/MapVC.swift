@@ -110,7 +110,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
      }
     
     func getFlickrInfo(forAnnotation annotation: DroppablePin) -> String {
-        return "\(FLICKR_URL)&content_type=1&lat=\(annotation.coordinate.latitude)&lon=\(annotation.coordinate.longitude)&radius=\(regionRadius/1000)&per_page=20&format=json&nojsoncallback=1"
+        return "\(FLICKR_URL)&content_type=1&lat=\(annotation.coordinate.latitude)&lon=\(annotation.coordinate.longitude)&radius=\(regionRadius/1000)&per_page=\(NUMBER_OF_PHOTOS_TO_SHOW)&format=json&nojsoncallback=1"
     }
     
     @IBAction func centerMapBtnPressed(_ sender: Any) {
@@ -161,7 +161,7 @@ extension MapVC: MKMapViewDelegate {
         
         let alamofireUrl = getFlickrInfo(forAnnotation: annotation)
 
-        photoService.getphotoInfoArray(forUrl: alamofireUrl) { (true) in
+        photoService.getphotoInfoArray(forUrl: alamofireUrl) { (finished) in
             
             var urlArray = [String]()
             
@@ -170,12 +170,21 @@ extension MapVC: MKMapViewDelegate {
                 urlArray.append(imageUrl)
             }
             
-            for url in urlArray {
-                Alamofire.request(url).responseImage(completionHandler: { (response) in
-                    guard let image = response.result.value else { return }
-                    self.imageArray.append(image)
-                    self.progressLbl?.text = "\(self.imageArray.count)/20 images downloaded"
-                })
+            if finished {
+                for url in urlArray {
+                    Alamofire.request(url).responseImage(completionHandler: { (response) in
+                        guard let image = response.result.value else { return }
+                        self.imageArray.append(image)
+                        self.progressLbl?.text = "\(self.imageArray.count)/\(NUMBER_OF_PHOTOS_TO_SHOW) images downloaded"
+                        if self.imageArray.count == NUMBER_OF_PHOTOS_TO_SHOW {
+                            if finished {
+                                self.removeSpinner()
+                                self.removeProgressLbl()
+                                //reload collectionView
+                            }
+                        }
+                    })
+                }
             }
         }
     }
