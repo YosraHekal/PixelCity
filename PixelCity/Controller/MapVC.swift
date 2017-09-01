@@ -103,6 +103,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             revealViewHeight.constant = 300
         } else {
             revealViewHeight.constant = 1
+            cancelAllSessions()
         }
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
@@ -116,6 +117,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func centerMapBtnPressed(_ sender: Any) {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
+        }
+    }
+    
+    func cancelAllSessions() {
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadData, downloadData) in
+            sessionDataTask.forEach({ $0.cancel() })
+            downloadData.forEach({ $0.cancel() })
         }
     }
 }
@@ -144,6 +152,7 @@ extension MapVC: MKMapViewDelegate {
         removePin()
         removeSpinner()
         removeProgressLbl()
+        cancelAllSessions()
         imageArray = []
         
         let touchPoint = sender.location(in: mapView)
