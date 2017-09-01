@@ -31,7 +31,7 @@ class PhotoService {
                 }
                 completion(true)
             } else {
-                debugPrint(response.result.error as Any)
+//                debugPrint(response.result.error as Any)
                 completion(false)
             }
         }

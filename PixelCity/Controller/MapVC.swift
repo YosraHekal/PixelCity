@@ -154,7 +154,7 @@ extension MapVC: MKMapViewDelegate {
         removeProgressLbl()
         cancelAllSessions()
         imageArray = []
-        
+        collectionView?.reloadData()
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: DROPPED_PIN)
@@ -189,7 +189,7 @@ extension MapVC: MKMapViewDelegate {
                             if finished {
                                 self.removeSpinner()
                                 self.removeProgressLbl()
-                                //reload collectionView
+                                self.collectionView?.reloadData()
                             }
                         }
                     })
@@ -226,12 +226,15 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PHOTO_CELL, for: indexPath) as? PhotoCell {
+            let imageFromIndex = imageArray[indexPath.row]
+            let imageView = UIImageView(image: imageFromIndex)
+            cell.addSubview(imageView)
             return cell
         } else {
             return UICollectionViewCell()
