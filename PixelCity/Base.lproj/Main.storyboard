@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,6 +92,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+        <!--PopVC-->
+        <scene sceneID="BKd-9N-v8w">
+            <objects>
+                <viewController storyboardIdentifier="PopVC" id="pk2-Fa-Bb9" customClass="PopVC" customModule="PixelCity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="tgM-eB-51N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AP9-g7-qDN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TwG-sz-tnW">
+                                <rect key="frame" x="87" y="622" width="200" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Hxv-la-8hq"/>
+                                    <constraint firstAttribute="width" constant="200" id="aTF-Bi-JA5"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double-tap to dismiss" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cy-su-M8d">
+                                <rect key="frame" x="87" y="622" width="200" height="25"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AP9-g7-qDN" firstAttribute="top" secondItem="tgM-eB-51N" secondAttribute="top" id="3sU-qZ-j38"/>
+                            <constraint firstItem="TwG-sz-tnW" firstAttribute="bottom" secondItem="7cy-su-M8d" secondAttribute="bottom" id="Gmj-dh-phB"/>
+                            <constraint firstItem="TwG-sz-tnW" firstAttribute="centerX" secondItem="tgM-eB-51N" secondAttribute="centerX" id="J8q-SZ-JVH"/>
+                            <constraint firstItem="7cy-su-M8d" firstAttribute="top" secondItem="TwG-sz-tnW" secondAttribute="top" id="Qju-70-GiN"/>
+                            <constraint firstItem="AP9-g7-qDN" firstAttribute="leading" secondItem="Bqv-y2-Ksc" secondAttribute="leading" id="ToR-Sr-d8T"/>
+                            <constraint firstItem="TwG-sz-tnW" firstAttribute="trailing" secondItem="7cy-su-M8d" secondAttribute="trailing" id="aiP-iD-PKj"/>
+                            <constraint firstAttribute="bottom" secondItem="AP9-g7-qDN" secondAttribute="bottom" id="e2z-oq-hOd"/>
+                            <constraint firstItem="AP9-g7-qDN" firstAttribute="trailing" secondItem="Bqv-y2-Ksc" secondAttribute="trailing" id="lhC-CX-p3w"/>
+                            <constraint firstItem="7cy-su-M8d" firstAttribute="leading" secondItem="TwG-sz-tnW" secondAttribute="leading" id="ml9-7b-AY1"/>
+                            <constraint firstItem="Bqv-y2-Ksc" firstAttribute="bottom" secondItem="TwG-sz-tnW" secondAttribute="bottom" constant="20" id="qiw-ns-Mjr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bqv-y2-Ksc"/>
+                    </view>
+                    <connections>
+                        <outlet property="popImageView" destination="AP9-g7-qDN" id="PvN-82-6vf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zgY-qd-bab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="802.39999999999998" y="123.68815592203899"/>
         </scene>
     </scenes>
     <resources>

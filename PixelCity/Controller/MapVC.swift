@@ -21,7 +21,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
 
-    let regionRadius: Double = 1000
+    let regionRadius: Double = 500
     var screenSize = UIScreen.main.bounds
     
     var spinner: UIActivityIndicatorView?
@@ -239,5 +239,12 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
         } else {
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else
+        { return }
+        popVC.initData(forImage: imageArray[indexPath.row])
+        present(popVC, animated: true)
     }
 }
