@@ -19,8 +19,10 @@ struct PhotoInfo {
     var ispublic: Any!
     var isfriend: Any!
     var isfamily: Any!
+    var url: String
+    var image: UIImage?
     
-    init(id: Any, owner: Any, secret: Any, server: Any, farm: Any, title: Any, ispublic: Any, isfriend: Any, isfamily: Any) {
+    init(id: Any, owner: Any, secret: Any, server: Any, farm: Any, title: Any, ispublic: Any, isfriend: Any, isfamily: Any, url: String) {
         self.id = id
         self.owner = owner
         self.secret = secret
@@ -30,5 +32,14 @@ struct PhotoInfo {
         self.ispublic = ispublic
         self.isfriend = isfriend
         self.isfamily = isfamily
+        self.url = url
+    }
+}
+
+import UIKit
+extension PhotoInfo {
+    func addImage(image: UIImage) {
+        var photo = PhotoInfo.init(id: id, owner: owner, secret: secret, server: server, farm: farm, title: title, ispublic: ispublic, isfriend: isfriend, isfamily: isfamily, url: url)
+        photo.image = image
     }
 }

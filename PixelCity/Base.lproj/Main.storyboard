@@ -11,7 +11,9 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
             <string>AvenirNext-DemiBold</string>
+            <string>AvenirNext-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -118,24 +120,50 @@
                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLbl" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgu-KW-dh9">
+                                <rect key="frame" x="0.0" y="569.5" width="375" height="24.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photoCredit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYf-UV-4pV">
+                                <rect key="frame" x="0.0" y="594" width="375" height="22"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AP9-g7-qDN" firstAttribute="top" secondItem="tgM-eB-51N" secondAttribute="top" id="3sU-qZ-j38"/>
+                            <constraint firstItem="sYf-UV-4pV" firstAttribute="trailing" secondItem="Bqv-y2-Ksc" secondAttribute="trailing" id="9ah-OI-2J3"/>
+                            <constraint firstItem="sYf-UV-4pV" firstAttribute="leading" secondItem="Bqv-y2-Ksc" secondAttribute="leading" id="C2i-Gk-hQZ"/>
                             <constraint firstItem="TwG-sz-tnW" firstAttribute="bottom" secondItem="7cy-su-M8d" secondAttribute="bottom" id="Gmj-dh-phB"/>
                             <constraint firstItem="TwG-sz-tnW" firstAttribute="centerX" secondItem="tgM-eB-51N" secondAttribute="centerX" id="J8q-SZ-JVH"/>
+                            <constraint firstItem="sYf-UV-4pV" firstAttribute="top" secondItem="Rgu-KW-dh9" secondAttribute="bottom" id="KXQ-zd-s2D"/>
+                            <constraint firstItem="TwG-sz-tnW" firstAttribute="top" secondItem="Rgu-KW-dh9" secondAttribute="bottom" constant="28" id="LCm-qm-CRs"/>
                             <constraint firstItem="7cy-su-M8d" firstAttribute="top" secondItem="TwG-sz-tnW" secondAttribute="top" id="Qju-70-GiN"/>
+                            <constraint firstItem="Rgu-KW-dh9" firstAttribute="leading" secondItem="Bqv-y2-Ksc" secondAttribute="leading" id="SDh-Q0-LEk"/>
                             <constraint firstItem="AP9-g7-qDN" firstAttribute="leading" secondItem="Bqv-y2-Ksc" secondAttribute="leading" id="ToR-Sr-d8T"/>
+                            <constraint firstItem="Rgu-KW-dh9" firstAttribute="centerX" secondItem="tgM-eB-51N" secondAttribute="centerX" id="XRl-pm-nga"/>
+                            <constraint firstItem="Bqv-y2-Ksc" firstAttribute="trailing" secondItem="Rgu-KW-dh9" secondAttribute="trailing" id="aWR-pp-rNU"/>
                             <constraint firstItem="TwG-sz-tnW" firstAttribute="trailing" secondItem="7cy-su-M8d" secondAttribute="trailing" id="aiP-iD-PKj"/>
                             <constraint firstAttribute="bottom" secondItem="AP9-g7-qDN" secondAttribute="bottom" id="e2z-oq-hOd"/>
                             <constraint firstItem="AP9-g7-qDN" firstAttribute="trailing" secondItem="Bqv-y2-Ksc" secondAttribute="trailing" id="lhC-CX-p3w"/>
                             <constraint firstItem="7cy-su-M8d" firstAttribute="leading" secondItem="TwG-sz-tnW" secondAttribute="leading" id="ml9-7b-AY1"/>
                             <constraint firstItem="Bqv-y2-Ksc" firstAttribute="bottom" secondItem="TwG-sz-tnW" secondAttribute="bottom" constant="20" id="qiw-ns-Mjr"/>
+                            <constraint firstItem="TwG-sz-tnW" firstAttribute="top" secondItem="sYf-UV-4pV" secondAttribute="bottom" constant="6" id="uoT-KV-uKt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bqv-y2-Ksc"/>
                     </view>
                     <connections>
+                        <outlet property="creditLbl" destination="sYf-UV-4pV" id="9y6-J7-MYE"/>
                         <outlet property="popImageView" destination="AP9-g7-qDN" id="PvN-82-6vf"/>
+                        <outlet property="titleLbl" destination="Rgu-KW-dh9" id="Y9B-BY-2kW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgY-qd-bab" userLabel="First Responder" sceneMemberID="firstResponder"/>

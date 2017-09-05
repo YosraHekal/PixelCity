@@ -11,11 +11,10 @@ import Alamofire
 import SwiftyJSON
 
 class PhotoService {
+
     static let instance = PhotoService()
-    
     var photoInfoArray = [PhotoInfo]()
-    var photoInfo: PhotoInfo?
-    var imageArray = [UIImage]()
+    var photoInfo: PhotoInfo!
     
     func getphotoInfoArray(forUrl url: String, completion: @escaping (_ status: Bool) -> ()) {
     
@@ -26,12 +25,12 @@ class PhotoService {
                 guard let photo = photos["photo"] as? [Dictionary<String, Any>] else { return }
                 
                 for pic in photo {
-                    let photoInfo = PhotoInfo(id: pic["id"] ?? "NA", owner: pic["owner"] ?? "NA", secret: pic["secret"] ?? "NA", server: pic["server"] ?? "NA", farm: pic["farm"] ?? "NA", title: pic["title"] ?? "NA", ispublic: pic["ispublic"] ?? "NA", isfriend: pic["isfriend"] ?? "NA", isfamily: pic["isfamily"] ?? "NA")
+                    let photoInfo = PhotoInfo(id: pic["id"] ?? "NA", owner: pic["owner"] ?? "NA", secret: pic["secret"] ?? "NA", server: pic["server"] ?? "NA", farm: pic["farm"] ?? "NA", title: pic["title"] ?? "NA", ispublic: pic["ispublic"] ?? "NA", isfriend: pic["isfriend"] ?? "NA", isfamily: pic["isfamily"] ?? "NA", url: "https://farm\(pic["farm"]!).staticflickr.com/\(pic["server"]!)/\(pic["id"]!)_\(pic["secret"]!)_h_d.jpg")
+                    
                     self.photoInfoArray.append(photoInfo)
                 }
                 completion(true)
             } else {
-//                debugPrint(response.result.error as Any)
                 completion(false)
             }
         }
