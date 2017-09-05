@@ -179,7 +179,7 @@ extension MapVC: MKMapViewDelegate {
                 self.photoInfoArray = self.photoService.photoInfoArray
                 self.retrieveImages(handler: { (finished) in
                     if finished {
-                        print("REACHED FINAL CLOSURE")
+                        print(self.photoInfoArray)
                         self.removeSpinner()
                         self.removeProgressLbl()
                         self.collectionView?.reloadData()
@@ -194,15 +194,15 @@ extension MapVC: MKMapViewDelegate {
         for photo in photoInfoArray {
             Alamofire.request(photo.url).responseImage(completionHandler: { (response) in
                 guard let image = response.result.value else {
-                    print("ERROR DOWNLOADING IMAGE")
                     return
                 }
                 print(image)
-                photo.addImage(image: image)
-                newPhotoInfoArray.append(photo)
+                let updatedPhoto = photo.addImage(photo: photo, image: image)
+                print("PHOTO IS \(updatedPhoto)")
+                newPhotoInfoArray.append(updatedPhoto)
                 self.progressLbl?.text = "\(newPhotoInfoArray.count)/\(NUMBER_OF_PHOTOS_TO_SHOW) images downloaded"
-                print("\(self.progressLbl?.text ?? "NoLabelInfo")")
                 if newPhotoInfoArray.count == self.photoInfoArray.count {
+                    print(newPhotoInfoArray)
                     self.photoInfoArray = newPhotoInfoArray
                     handler(true)
                 }
