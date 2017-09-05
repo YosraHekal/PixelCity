@@ -41,7 +41,6 @@ extension PhotoInfo {
     func addImage(photo: PhotoInfo, image: UIImage) -> PhotoInfo {
         var photo = PhotoInfo.init(id: id, owner: owner, secret: secret, server: server, farm: farm, title: title, ispublic: ispublic, isfriend: isfriend, isfamily: isfamily, url: url)
         photo.image = image
-        print(photo)
         return photo
     }
 }

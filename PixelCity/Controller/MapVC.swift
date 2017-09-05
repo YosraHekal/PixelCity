@@ -196,9 +196,7 @@ extension MapVC: MKMapViewDelegate {
                 guard let image = response.result.value else {
                     return
                 }
-                print(image)
                 let updatedPhoto = photo.addImage(photo: photo, image: image)
-                print("PHOTO IS \(updatedPhoto)")
                 newPhotoInfoArray.append(updatedPhoto)
                 self.progressLbl?.text = "\(newPhotoInfoArray.count)/\(NUMBER_OF_PHOTOS_TO_SHOW) images downloaded"
                 if newPhotoInfoArray.count == self.photoInfoArray.count {
@@ -256,8 +254,8 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else
         { return }
-        let photo = photoInfoArray[indexPath.row]
-        popVC.initData(forPhoto: photo)
+        let selectedPhoto = photoInfoArray[indexPath.row]
+        popVC.initData(forPhoto: selectedPhoto)
         present(popVC, animated: true)
     }
 }

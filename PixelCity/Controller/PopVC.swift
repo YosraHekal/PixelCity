@@ -14,22 +14,17 @@ class PopVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var creditLbl: UILabel!
     
-    var photo: PhotoInfo!
-    var image: UIImage!
-    var label = ""
-    var credit = ""
-    
-    func initData(forPhoto: PhotoInfo) {
-        self.image = photo.image
-        self.label = (photo.title as? String) ?? ""
-        self.credit = (photo.owner as? String) ?? ""
+    var selectedPhoto: PhotoInfo!
+
+    func initData(forPhoto photo: PhotoInfo) {
+        self.selectedPhoto = photo
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        popImageView.image = image
-        titleLbl.text = label
-        creditLbl.text = "Photo credit: \(String(describing: credit))"
+        popImageView.image = selectedPhoto.image
+        titleLbl.text = selectedPhoto.title as! String
+        creditLbl.text = "Photo credit: \(selectedPhoto.owner as! String))"
         addDoubleTap()
     }
     
