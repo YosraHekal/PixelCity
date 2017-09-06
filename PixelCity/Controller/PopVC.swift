@@ -24,7 +24,7 @@ class PopVC: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         popImageView.image = selectedPhoto.image
         titleLbl.text = selectedPhoto.title as! String
-        creditLbl.text = "Photo credit: \(selectedPhoto.owner as! String))"
+        creditLbl.text = "Photo credit: \(selectedPhoto.owner as! String)"
         addDoubleTap()
     }
     
